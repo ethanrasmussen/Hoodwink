@@ -226,13 +226,3 @@ def getDivYield(ticker):
     except:
         raise Exception("ERROR: Couldn't get dividend yield.")
     browser.close()
-
-
-ticker = "bac"
-print("1D: $"+str(getNumericChange(ticker,"daily"))+" ("+str(getPercentChange(ticker,"daily"))+"%)")
-print("1W: $"+str(getNumericChange(ticker,"weekly"))+" ("+str(getPercentChange(ticker,"weekly"))+"%)")
-print("1M: $"+str(getNumericChange(ticker,"monthly"))+" ("+str(getPercentChange(ticker,"monthly"))+"%)")
-print("3M: $"+str(getNumericChange(ticker,"3-month"))+" ("+str(getPercentChange(ticker,"3-month"))+"%)")
-print("1Y: $"+str(getNumericChange(ticker,"annual"))+" ("+str(getPercentChange(ticker,"annual"))+"%)")
-print("5Y: $"+str(getNumericChange(ticker,"5-year"))+" ("+str(getPercentChange(ticker,"5-year"))+"%)")
-
