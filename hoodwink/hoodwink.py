@@ -177,9 +177,9 @@ def getOpen(ticker):
 def getHigh(ticker, period="today"):
     try:
         browser.get("https://robinhood.com/stocks/"+ticker)
-        if period == "today" or "day" or "daily" or "1d":
+        if period == "today" or period == "day" or period == "daily" or period == "1d":
             high = float(browser.find_element_by_xpath("/html/body/div[1]/main/div[2]/div/div/div/div/main/div[2]/div[1]/div/section[3]/div[2]/div[5]/div[3]").text[1:])
-        elif period == "52w" or "1yr" or "annual" or "year":
+        elif period == "52w" or period == "1yr" or period == "annual" or period == "year":
             high = float(browser.find_element_by_xpath("/html/body/div[1]/main/div[2]/div/div/div/div/main/div[2]/div[1]/div/section[3]/div[2]/div[9]/div[3]").text[1:])
         return high
     except:
@@ -190,9 +190,9 @@ def getHigh(ticker, period="today"):
 def getLow(ticker, period="today"):
     try:
         browser.get("https://robinhood.com/stocks/"+ticker)
-        if period == "today" or "day" or "daily" or "1d":
+        if period == "today" or period == "day" or period == "daily" or period == "1d":
             return float(browser.find_element_by_xpath("/html/body/div[1]/main/div[2]/div/div/div/div/main/div[2]/div[1]/div/section[3]/div[2]/div[6]/div[3]").text[1:])
-        if period == "52w" or "1yr" or "annual" or "year":
+        if period == "52w" or period == "1yr" or period == "annual" or period == "year":
             return float(browser.find_element_by_xpath("/html/body/div[1]/main/div[2]/div/div/div/div/main/div[2]/div[1]/div/section[3]/div[2]/div[10]/div[3]").text[1:])
     except:
         raise Exception("ERROR: Couldn't get low for "+period+".")
@@ -217,16 +217,5 @@ def getDivYield(ticker):
     browser.close()
 
 
-ticker = "spy"
-print(getHigh(ticker, "today"))
-print(getHigh(ticker, "annual"))
 
-#BROKEN METHODS:
-#getPercentChange (for not-daily)
-#getNumericChange (for not-daily)
-#getHigh (for 52w)
-#getLow (for 52w)
-
-#NOTE:
-#what chrome options args available? turn off img?
 
