@@ -8,7 +8,7 @@ with open('LICENSE') as f:
 
 setuptools.setup(
     name = "Hoodwink",
-    version = "0.0.1",
+    version = "0.1.0",
     author = "Ethan M. Rasmussen",
     author_email = "ethan@razgroup.com",
     description = "A simple package for snatching basic stock data from Robinhood.",
