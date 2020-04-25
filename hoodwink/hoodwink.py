@@ -5,6 +5,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.chrome.options import Options
+import time
 
 #NOTE: data may be slightly delayed in current version of Hoodwink, as logging-in is not yet supported!
 
@@ -73,42 +74,47 @@ def getPrice(ticker):
 def getPercentChange(ticker, period="daily"):
     try:
         browser.get("https://robinhood.com/stocks/"+ticker)
-        if period == "daily" or "1d" or "today":
+        if period == "daily" or period == "1d" or period == "today":
             change = browser.find_element_by_xpath("/html/body/div[1]/main/div[2]/div/div/div/div/main/div[2]/div[1]/div/section[1]/header/div[2]/span/span/span[2]").text
             change = change.replace('%','')
             change = change.replace('(','')
             change = change.replace(')','')
             return float(change)
-        elif period == "weekly" or "1w" or "week":
+        elif period == "weekly" or period == "1w" or period == "week":
             browser.find_element_by_xpath("/html/body/div[1]/main/div[2]/div/div/div/div/main/div[2]/div[1]/div/section[1]/nav/a[2]").click()
+            time.sleep(0.5)
             change = browser.find_element_by_xpath("/html/body/div[1]/main/div[2]/div/div/div/div/main/div[2]/div[1]/div/section[1]/header/div[2]/span[1]/span/span[2]").text
             change = change.replace('%','')
             change = change.replace('(','')
             change = change.replace(')','')
             return float(change)
-        elif period == "monthly" or "1m" or "1-month":
+        elif period == "monthly" or period == "1m" or period == "1-month":
             browser.find_element_by_xpath("/html/body/div[1]/main/div[2]/div/div/div/div/main/div[2]/div[1]/div/section[1]/nav/a[3]").click()
+            time.sleep(0.5)
             change = browser.find_element_by_xpath("/html/body/div[1]/main/div[2]/div/div/div/div/main/div[2]/div[1]/div/section[1]/header/div[2]/span[1]/span/span[2]").text
             change = change.replace('%','')
             change = change.replace('(','')
             change = change.replace(')','')
             return float(change)
-        elif period == "3-month" or "3m":
+        elif period == "3-month" or period == "3m":
             browser.find_element_by_xpath("/html/body/div[1]/main/div[2]/div/div/div/div/main/div[2]/div[1]/div/section[1]/nav/a[4]").click()
+            time.sleep(0.5)
             change = browser.find_element_by_xpath("/html/body/div[1]/main/div[2]/div/div/div/div/main/div[2]/div[1]/div/section[1]/header/div[2]/span[1]/span/span[2]").text
             change = change.replace('%','')
             change = change.replace('(','')
             change = change.replace(')','')
             return float(change)
-        elif period == "annual" or "year" or "1-year" or "1yr" or "yr":
+        elif period == "annual" or period == "year" or period == "1-year" or period == "1yr" or period == "yr":
             browser.find_element_by_xpath("/html/body/div[1]/main/div[2]/div/div/div/div/main/div[2]/div[1]/div/section[1]/nav/a[5]").click()
+            time.sleep(0.5)
             change = browser.find_element_by_xpath("/html/body/div[1]/main/div[2]/div/div/div/div/main/div[2]/div[1]/div/section[1]/header/div[2]/span[1]/span/span[2]").text
             change = change.replace('%','')
             change = change.replace('(','')
             change = change.replace(')','')
             return float(change)
-        elif period == "5-year" or "5yr":
+        elif period == "5-year" or period == "5yr":
             browser.find_element_by_xpath("/html/body/div[1]/main/div[2]/div/div/div/div/main/div[2]/div[1]/div/section[1]/nav/a[6]").click()
+            time.sleep(0.5)
             change = browser.find_element_by_xpath("/html/body/div[1]/main/div[2]/div/div/div/div/main/div[2]/div[1]/div/section[1]/header/div[2]/span[1]/span/span[2]").text
             change = change.replace('%','')
             change = change.replace('(','')
@@ -122,32 +128,37 @@ def getPercentChange(ticker, period="daily"):
 def getNumericChange(ticker, period="daily"):
     try:
         browser.get("https://robinhood.com/stocks/"+ticker)
-        if period == "daily" or "1d" or "today":
+        if period == "daily" or period == "1d" or period == "today":
             change = browser.find_element_by_xpath("/html/body/div[1]/main/div[2]/div/div/div/div/main/div[2]/div[1]/div/section[1]/header/div[2]/span[1]/span/span[1]").text
             change = change.replace('$','')
             return float(change)
-        elif period == "weekly" or "1w" or "week":
+        elif period == "weekly" or period == "1w" or period == "week":
             browser.find_element_by_xpath("/html/body/div[1]/main/div[2]/div/div/div/div/main/div[2]/div[1]/div/section[1]/nav/a[2]").click()
+            time.sleep(0.75)
             change = browser.find_element_by_xpath("/html/body/div[1]/main/div[2]/div/div/div/div/main/div[2]/div[1]/div/section[1]/header/div[2]/span[1]/span/span[1]").text
             change = change.replace('$','')
             return float(change)
-        elif period == "monthly" or "1m" or "1-month":
+        elif period == "monthly" or period == "1m" or period == "1-month":
             browser.find_element_by_xpath("/html/body/div[1]/main/div[2]/div/div/div/div/main/div[2]/div[1]/div/section[1]/nav/a[3]").click()
+            time.sleep(0.75)
             change = browser.find_element_by_xpath("/html/body/div[1]/main/div[2]/div/div/div/div/main/div[2]/div[1]/div/section[1]/header/div[2]/span[1]/span/span[1]").text
             change = change.replace('$','')
             return float(change)
-        elif period == "3-month" or "3m":
+        elif period == "3-month" or period == "3m":
             browser.find_element_by_xpath("/html/body/div[1]/main/div[2]/div/div/div/div/main/div[2]/div[1]/div/section[1]/nav/a[4]").click()
+            time.sleep(0.75)
             change = browser.find_element_by_xpath("/html/body/div[1]/main/div[2]/div/div/div/div/main/div[2]/div[1]/div/section[1]/header/div[2]/span[1]/span/span[1]").text
             change = change.replace('$','')
             return float(change)
-        elif period == "annual" or "year" or "1-year" or "1yr" or "yr":
+        elif period == "annual" or period == "year" or period == "1-year" or period == "1yr" or period == "yr":
             browser.find_element_by_xpath("/html/body/div[1]/main/div[2]/div/div/div/div/main/div[2]/div[1]/div/section[1]/nav/a[5]").click()
+            time.sleep(0.75)
             change = browser.find_element_by_xpath("/html/body/div[1]/main/div[2]/div/div/div/div/main/div[2]/div[1]/div/section[1]/header/div[2]/span[1]/span/span[1]").text
             change = change.replace('$','')
             return float(change)
-        elif period == "5-year" or "5yr":
+        elif period == "5-year" or period == "5yr":
             browser.find_element_by_xpath("/html/body/div[1]/main/div[2]/div/div/div/div/main/div[2]/div[1]/div/section[1]/nav/a[6]").click()
+            time.sleep(0.75)
             change = browser.find_element_by_xpath("/html/body/div[1]/main/div[2]/div/div/div/div/main/div[2]/div[1]/div/section[1]/header/div[2]/span[1]/span/span[1]").text
             change = change.replace('$','')
             return float(change)
@@ -217,5 +228,11 @@ def getDivYield(ticker):
     browser.close()
 
 
-
+ticker = "bac"
+print("1D: $"+str(getNumericChange(ticker,"daily"))+" ("+str(getPercentChange(ticker,"daily"))+"%)")
+print("1W: $"+str(getNumericChange(ticker,"weekly"))+" ("+str(getPercentChange(ticker,"weekly"))+"%)")
+print("1M: $"+str(getNumericChange(ticker,"monthly"))+" ("+str(getPercentChange(ticker,"monthly"))+"%)")
+print("3M: $"+str(getNumericChange(ticker,"3-month"))+" ("+str(getPercentChange(ticker,"3-month"))+"%)")
+print("1Y: $"+str(getNumericChange(ticker,"annual"))+" ("+str(getPercentChange(ticker,"annual"))+"%)")
+print("5Y: $"+str(getNumericChange(ticker,"5-year"))+" ("+str(getPercentChange(ticker,"5-year"))+"%)")
 
