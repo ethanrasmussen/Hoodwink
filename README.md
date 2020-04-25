@@ -1,5 +1,5 @@
 # Hoodwink
-###### Current Version: 0.1
+###### Current Version: 0.2
 A simple Python package for snatching basic stock information from Robinhood. Please note that in the current iteration, Hoodwink may return values which are slightly delayed. This is due to it not requiring log-in information. There are plans to implement log-in functionality in the future to guarantee real-time data, as well as adding options data to Hoodwink.
 
 ## Functions:
