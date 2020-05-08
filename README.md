@@ -1,9 +1,22 @@
 # Hoodwink
-###### Current Version: 0.2.2
-###### [Click here for PyPi page!](https://pypi.org/project/Hoodwink/)
+###### Current Version: 0.4.5
+###### [Click here for PyPI page!](https://pypi.org/project/Hoodwink/)
 A simple Python package for snatching basic stock information from Robinhood. Please note that in the current iteration, Hoodwink may return values which are slightly delayed. This is due to it not requiring log-in information. There are plans to implement log-in functionality in the future to guarantee real-time data, as well as adding options data to Hoodwink.
 
-## Functions:
+
+## Usage:
+
+#### After installing Hoodwink from PyPI, you can import it using:
+```
+from hoodwink import hoodwink
+```
+#### To begin using Hoodwink, you'll need to declare a HoodwinkDriver, like this:
+```
+CHROMEDRIVER_PATH = "assets\chromedriver.exe"
+hw = hoodwink.HoodwinkDriver(CHROMEDRIVER_PATH)
+```
+
+## HoodwinkDriver Functions:
 
 ### getFullName(ticker):
 * ###### Parameters: 'ticker' = String value of stock/security ticker symbol
